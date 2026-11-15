@@ -1089,6 +1089,55 @@ body.en-inicio.desplazado .top { background: rgba(10, 10, 10, .94); border-botto
   .hoja-lb-temas button:hover { background: rgba(255,255,255,.08); }
   .hoja-lb-temas button.on { background: var(--musgo); color: #1f2a20; font-weight: 700; }
 }
+
+/* Talleres: tarjetas con foto */
+.tall-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+.tall-card { display: flex; flex-direction: column; height: 100%; border-radius: 22px; overflow: hidden; background: var(--papel, #efe6c8); color: inherit; text-decoration: none; box-shadow: 0 2px 0 rgba(0,0,0,.05), 0 10px 24px rgba(20,25,15,.12); transition: transform .2s ease, box-shadow .2s ease; }
+.tall-card:hover, .tall-card:focus-visible { transform: translateY(-3px); box-shadow: 0 2px 0 rgba(0,0,0,.05), 0 16px 32px rgba(20,25,15,.18); }
+.tall-img { display: block; aspect-ratio: 16 / 10; background: #e6dcc0; overflow: hidden; }
+.tall-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.tall-img .foto-vacia { height: 100%; min-height: 0; border-radius: 0; }
+.tall-txt { display: flex; flex-direction: column; gap: .3rem; padding: 1.1rem 1.25rem 1.3rem; flex: 1; }
+.tall-meta { font-family: var(--f-ui); font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--musgo-osc); }
+.tall-txt strong { font-family: var(--f-ui); font-size: 1.25rem; line-height: 1.25; }
+.tall-prof { color: var(--muted); }
+.tall-res { margin-top: .3rem; font-size: .95rem; line-height: 1.45; }
+.tall-ir { margin-top: auto; padding-top: .8rem; font-family: var(--f-ui); font-weight: 700; color: var(--coral-osc); }
+.tall-pag { max-width: 820px; }
+.tall-portada { margin: 0 0 2rem; }
+.tall-portada .foto { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.tall-portada img { display: block; width: 100%; max-height: 520px; object-fit: cover; border-radius: 22px; }
+.tall-h2 { font-family: var(--f-ui); font-size: 1.5rem; margin: 2.5rem 0 1rem; }
+.volver { margin: 0 0 .8rem; font-family: var(--f-ui); font-weight: 700; }
+.volver a { color: inherit; }
+
+.tall-pres-sub { margin: -.4rem 0 1rem; color: var(--muted); }
+.tall-pdf .hp-vista { aspect-ratio: 4 / 3; }
+.tall-pdf .hp-vista canvas { width: 100% !important; height: 100% !important; object-fit: contain; }
+.hoja-lb-marco:has(canvas) { aspect-ratio: auto; }
+
+.tall-cuerpo .tall-fig { margin: .5rem 0 1.5rem; }
+.tall-fig .foto { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; aspect-ratio: auto; border-radius: 18px; }
+.tall-fig .foto img { height: auto; }
+.tall-fig img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 60%; border-radius: 18px; box-shadow: 0 10px 24px rgba(20,25,15,.14); }
+.tall-cuerpo h3, .tall-cuerpo .tall-h2 { clear: both; }
+.tall-cuerpo::after { content: ""; display: block; clear: both; }
+.tall-fila { display: flex; flex-direction: column-reverse; gap: 1rem; margin: .4rem 0 1.6rem; }
+.tall-fila .tall-fig { margin: 0; }
+.tall-fig.vert img { aspect-ratio: 3 / 4; object-position: 50% 30%; }
+@media (min-width: 700px) { .tall-fila:has(.vert) { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); } }
+.tall-fila-txt > :last-child { margin-bottom: 0; }
+.tall-fila-txt > h3:first-child { margin-top: 0; }
+.tall-fila:has(.tall-fila-txt > h3:first-child) { margin-top: 2.2rem; }
+@media (min-width: 700px) {
+  .tall-fila { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: center; gap: 2rem; }
+  .tall-fila.izq { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); }
+  .tall-fila.izq .tall-fig { order: -1; }
+}
+.tall-cuerpo .tall-h2 { margin-top: 2.5rem; }
+
+.tall-video video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 18px; box-shadow: 0 10px 24px rgba(20,25,15,.14); }
+.tall-cuerpo .tall-pdf { margin: 1.25rem 0 2rem; }
 </style>
 </head>
 <body>
@@ -1424,9 +1473,86 @@ const RESUMENES = {
 
 
 /* ---------- Talleres ----------  (fotos: nombres de archivos dentro de "archivos") */
+// Cada taller se ve en la página Talleres como una tarjeta con su foto de portada.
+// Al tocarla se abre su página, con el texto escrito aquí mismo (no PDF).
+//   portada:   la foto de la tarjeta (si está vacía se ve un recuadro para foto)
+//   resumen:   una o dos líneas que salen en la tarjeta
+//   contenido: el texto completo. "## Título" hace un subtítulo; las líneas que empiezan con "- " hacen una lista;
+//              una línea en blanco separa párrafos; **negrita**.
+//   fotos:     más fotos, que salen en una galería al final
 const TALLERES = [
-  { tema: "Reto torácico", profe: "Dr. Gerardo Victoria", semana: 2, descripcion: "", archivo: "", enlace: "", fotos: [] },
-  // { tema: "Nombre del taller", profe: "Dr. ...", semana: 3, descripcion: "Qué hicimos.", archivo: "", enlace: "", fotos: ["taller2-1.jpg"] },
+  {
+    tema: "Reto torácico", profe: "Dr. Gerardo Victoria", fecha: "14 de agosto de 2026",
+    portada: "taller-reto-portada.jpg",
+    resumen: "Casos clínicos simulados de trauma torácico: diagnóstico y manejo en grupos.",
+    contenido: `[[foto 1]]
+## Qué fue el reto torácico
+El reto torácico fue parte de la clase de trauma torácico del Dr. Gerardo Victoria. Nos dividimos en los 8 grupos de la cátedra; el mío fue el **grupo 8, el grupo Panamá**.
+
+## Cómo fue la simulación
+Después de la clase pasamos al salón de simulación. A cada grupo le tocó un caso clínico diferente de trauma torácico, y lo fuimos resolviendo paso a paso, como se haría con un paciente real:
+
+- **Anamnesis:** primero nos daban la historia del paciente: cómo ocurrió el trauma, qué síntomas tenía y sus antecedentes.
+- **Examen físico:** después se le hacía el examen físico y nos daban los hallazgos.
+- **Estudios de imagen:** luego nos mostraban los estudios de imagen del paciente para interpretarlos.
+- **Diagnóstico:** con toda esa información, como grupo, teníamos que decidir qué patología tenía el paciente.
+- **Manejo:** por último, había que decir cuál era el siguiente paso del manejo.
+
+[[foto 2]]
+En la simulación se vieron las patologías más frecuentes del trauma torácico, como el neumotórax, el hemotórax, las fracturas costales, la contusión pulmonar y el taponamiento cardíaco.
+
+Todo fue en simulación, así que había que ponerse de acuerdo y trabajar en equipo para llegar al diagnóstico y al manejo.
+
+## Lo que había que repasar
+- Anatomía del tórax: pleuras, mediastino, pericardio y grandes vasos.
+- Manejo inicial según ATLS (ABCDE) y las intervenciones que salvan la vida.
+- Diferencias entre el trauma penetrante y el contuso.
+- Tubo de tórax y descompresión con aguja del neumotórax a tensión.
+- Indicaciones de la toracotomía de emergencia.
+- Imágenes: radiografía de tórax, E-FAST y TAC.
+
+[[presentacion]]`,
+    presentacion: { titulo: "Trauma torácico", profe: "Dr. Gerardo Victoria", pdf: "taller-trauma-toracico.pdf", nota: "La presentación completa (192 diapositivas)" },
+    fotos: ["taller-reto-1.jpg", "taller-reto-2.jpg"],
+  },
+  {
+    tema: "Abdomen agudo", profe: "Dr. Gerardo Victoria", fecha: "1 de septiembre de 2026",
+    portada: "taller-abdomen-portada.jpg",
+    resumen: "Nuestro grupo recreó un caso simulado de pancreatitis aguda biliar.",
+    contenido: `[[foto 1]]
+## Qué fue el taller
+En el taller, **cada grupo tuvo que simular una patología de abdomen agudo y, a la vez, adivinar la patología que simulaba otro grupo**.
+
+Así vimos las patologías más frecuentes del abdomen agudo, como la apendicitis, la colecistitis, la pancreatitis, la obstrucción intestinal y la perforación de víscera hueca.
+
+En la foto, nuestro grupo examinando al paciente del caso que nos tocó adivinar.
+
+[[video]]
+## Nuestro caso: pancreatitis aguda
+A mi grupo, el **grupo 8, el grupo Panamá**, le tocó recrear un caso de **pancreatitis aguda**, y para eso preparamos el caso clínico completo.
+
+Nuestro compañero **Michael** fue el paciente simulado: lo representó desde la anamnesis hasta el examen físico. Mientras tanto, nosotros le dábamos al grupo que tenía que adivinar el caso las imágenes y los laboratorios correspondientes.
+
+En el video, Michael simulando a un paciente con pancreatitis aguda.
+
+## Cómo estaba armado el caso
+El caso se dividía en roles:
+
+- **Simulador:** el paciente, un hombre de 23 años, comerciante, con taquicardia (108 lpm), presión de 100/65 mmHg, taquipnea y febrícula (37.8 °C).
+- **Clínico:** el examen físico: paciente en posición antálgica, encorvado hacia adelante, con leve tinte ictérico, dolor intenso en epigastrio e hipocondrio derecho, defensa muscular voluntaria y ruidos hidroaéreos disminuidos. Los signos de Grey Turner y Cullen eran negativos.
+- **Radiólogo:** radiografía de abdomen de pie (sin neumoperitoneo, con signo del colon cortado), ultrasonido (colelitiasis y páncreas aumentado de tamaño, con edema) y tomografía contrastada (Balthazar C, sin necrosis).
+- **Laboratorista:** leucocitosis con neutrofilia, hemoconcentración, amilasa y lipasa más de 3 veces por encima de lo normal, hiperglucemia y colestasis.
+- **Órdenes médicas:** NPO, vía periférica, hidratación con solución salina y laboratorios preoperatorios.
+- **Explicación al paciente y patólogo:** cómo explicarle el diagnóstico al paciente, y el hallazgo anatomopatológico esperado de la vesícula.
+
+[[presentacion]]
+
+## El diagnóstico
+**Pancreatitis aguda biliar (litiásica), leve a moderada**, sin necrosis ni falla orgánica. El manejo definitivo es la colecistectomía laparoscópica en el mismo ingreso, cuando baja la inflamación.`,
+    presentacion: { sinTitulo: true, titulo: "Caso clínico: pancreatitis aguda", pdf: "taller-abdomen-caso.pdf", nota: "Nuestro caso clínico completo (19 páginas)" },
+    video: { src: "taller-abdomen-michael.mp4", poster: "taller-abdomen-2.jpg", texto: "Michael simulando a un paciente con pancreatitis aguda." },
+    fotos: ["taller-abdomen-1.jpg"],
+  },
 ];
 
 
@@ -1500,10 +1626,13 @@ const EXTRAS = [
       if (lineas[0].indexOf("## ") === 0) {
         return "<h3>" + inline(lineas[0].slice(3)) + "</h3>" + (lineas.length > 1 ? fmt(lineas.slice(1).join("\n")) : "");
       }
-      if (lineas.every((l) => /^[-•] /.test(l))) {
-        return "<ul>" + lineas.map((l) => "<li>" + inline(l.slice(2)) + "</li>").join("") + "</ul>";
-      }
-      return "<p>" + lineas.map(inline).join(" ") + "</p>";
+      // Párrafos y listas pueden ir en el mismo bloque: cada grupo de líneas con "- " es una lista
+      let out = "", par = [], lis = [];
+      const cerrarPar = () => { if (par.length) { out += "<p>" + par.map(inline).join(" ") + "</p>"; par = []; } };
+      const cerrarLis = () => { if (lis.length) { out += "<ul>" + lis.map((l) => "<li>" + inline(l.slice(2)) + "</li>").join("") + "</ul>"; lis = []; } };
+      lineas.forEach((l) => { if (/^[-•] /.test(l)) { cerrarPar(); lis.push(l); } else { cerrarLis(); par.push(l); } });
+      cerrarPar(); cerrarLis();
+      return out;
     }).join("");
   }
 
@@ -2172,14 +2301,98 @@ const EXTRAS = [
 
   /* ---------- TALLERES ---------- */
   function viewTalleres() {
-    const cuerpo = TALLERES.length ? TALLERES.map((t, i) =>
-      '<section class="taller"><div class="tit"><h2>' + esc(t.tema) + '</h2><p class="sub">' + esc(t.profe) + "</p></div>" +
-      '<div class="pills">' + (t.semana ? '<span class="pill azul">Semana ' + t.semana + "</span>" : "") + '<span class="pill oscura">Taller ' + (i + 1) + "</span></div>" +
-      '<div class="dos-taller"><div>' + (t.descripcion ? '<div class="cuerpo">' + fmt(t.descripcion) + "</div>" : "") +
-      visorSlot({ archivo: t.archivo, enlace: t.enlace, auto: "taller-" + (i + 1) + ".pdf", titulo: "Taller: " + t.tema, vacio: "El material de este taller todavía está en preparación." }) +
-      "</div><div>" + galeria(t.fotos, 2, t.tema) + "</div></div></section>"
-    ).join("") : vacioPag("Todavía no hay talleres publicados.");
-    return cab("Talleres", "Lo que practicamos con las manos.") + '<div class="wrap pagina">' + cuerpo + "</div>";
+    const cuerpo = TALLERES.length ? '<ul class="tall-grid">' + TALLERES.map((t, i) =>
+      '<li><a class="tall-card" href="#/taller/' + (i + 1) + '">' +
+      '<span class="tall-img">' + (t.portada ? '<img src="' + esc(ruta(t.portada)) + '" alt="" loading="lazy">' : fotoVacia("Foto del taller")) + "</span>" +
+      '<span class="tall-txt">' + (t.fecha ? '<span class="tall-meta">' + esc(t.fecha) + "</span>" : "") +
+      "<strong>" + esc(t.tema) + "</strong>" +
+      '<span class="tall-prof">' + esc(t.profe) + "</span>" +
+      (t.resumen ? '<span class="tall-res">' + esc(t.resumen) + "</span>" : "") +
+      '<span class="tall-ir">Ver taller <span aria-hidden="true">→</span></span></span></a></li>'
+    ).join("") + "</ul>" : vacioPag("Todavía no hay talleres publicados.");
+    return cab("Talleres", "Lo que practicamos con las manos. Toca un taller para ver lo que hicimos.") + '<div class="wrap pagina">' + cuerpo + "</div>";
+  }
+
+  function bindTaller(n) {
+    const t = TALLERES[n - 1], fig = $(".tall-pdf");
+    if (!t || !t.presentacion || !fig || typeof abrirPdf !== "function") return;
+    const url = ruta(t.presentacion.pdf), cv = fig.querySelector("canvas");
+    cv._pdf = url;
+    let N = 1, k = 0;
+    const pintar = (d) => {
+      moverPagina(cv, k, N, d);
+      fig.querySelector(".hp-cont").textContent = "Diapositiva " + (k + 1) + " de " + N + " ·";
+      fig.querySelector(".hp-ant").disabled = k === 0;
+      fig.querySelector(".hp-sig").disabled = k >= N - 1;
+    };
+    const ir = (d) => { const nk = Math.max(0, Math.min(N - 1, k + d)); if (nk !== k) { k = nk; pintar(d); } };
+    fig.querySelectorAll("[data-paso]").forEach((b) => b.addEventListener("click", () => ir(Number(b.getAttribute("data-paso")))));
+    deslizar(fig.querySelector(".hp"), ir);
+    fig.querySelectorAll("[data-tgrande]").forEach((b) => b.addEventListener("click", () => abrirHoja(url, t.presentacion.titulo, N, k, null, (kk) => { if (kk !== k) { k = kk; pintar(); } })));
+    abrirPdf(url).then((pdf) => {
+      N = pdf.numPages;
+      pdf.getPage(1).then((pg) => { const v = pg.getViewport({ scale: 1 }); fig.querySelector(".hp-vista").style.aspectRatio = v.width + " / " + v.height; pintar(); });
+    }).catch(() => pintar());
+  }
+
+  function viewTaller(n) {
+    const t = TALLERES[n - 1];
+    if (!t) return cab("Taller no encontrado", "Ese taller no existe.") + '<div class="wrap pagina"><p><a href="#/talleres">← Volver a Talleres</a></p></div>';
+    const pills = t.fecha ? '<div class="pills"><span class="pill">' + esc(t.fecha) + "</span></div>" : "";
+    const portada = t.portadaDentro && t.portada
+      ? '<figure class="tall-portada"><button type="button" class="foto" data-full="' + esc(ruta(t.portada)) + '" data-cap="' + esc(t.tema) + '"><img src="' + esc(ruta(t.portada)) + '" alt="' + esc(t.tema) + '"></button></figure>'
+      : "";
+    const P = t.presentacion;
+    const pres = !P ? "" : (P.sinTitulo ? "" : '<h2 class="tall-h2">' + esc(P.encabezado || ("La clase: " + P.titulo)) + "</h2>" + '<p class="tall-pres-sub">' + esc(P.sub || ("Presentación de " + P.profe + ".")) + "</p>") +
+      (typeof abrirPdf === "function"
+        ? '<figure class="res-hoja res-pdf tall-pdf"><div class="visor-bar solo-btn"><span class="visor-btns"><button type="button" class="btn peq" data-tgrande>Ver en grande</button></span></div>' +
+          '<div class="hp"><button type="button" class="res-hoja-img hp-vista tall-pdf-vista" data-tgrande aria-label="Ver la presentación en grande"><canvas width="1280" height="960" role="img" aria-label="' + esc("Presentación: " + P.titulo) + '"></canvas><span class="hp-cargando">Cargando presentación…</span></button>' +
+          '<button type="button" class="hp-flecha hp-ant" data-paso="-1" aria-label="Diapositiva anterior" disabled>‹</button><button type="button" class="hp-flecha hp-sig" data-paso="1" aria-label="Diapositiva siguiente" disabled>›</button></div>' +
+          '<figcaption><span class="hp-cont" aria-live="polite"></span> Toca la diapositiva para verla en grande.</figcaption></figure>'
+        : '<p class="vacio-simple">' + esc(P.nota || "La presentación completa") + ' se ve en la versión del blog publicada en GitHub.</p>');
+    // En el texto, [[foto 1]], [[foto 2]]... y [[presentacion]] ponen la foto o la presentación en ese lugar
+    const lista = (t.fotos || []).filter(Boolean), usadas = {};
+    let presUsada = false;
+    const bloque = (m) => {
+      if (m === "presentacion") { presUsada = true; return pres; }
+      if (m === "video") {
+        const V = t.video;
+        if (!V) return "";
+        if (V.src) return '<figure class="tall-fig tall-video"><video controls playsinline preload="none"' + (V.poster ? ' poster="' + esc(ruta(V.poster)) + '"' : "") + ' aria-label="' + esc(V.texto || "Video") + '"><source src="' + esc(ruta(V.src)) + '" type="video/mp4"></video></figure>';
+        return V.poster ? '<figure class="tall-fig"><button type="button" class="foto" data-full="' + esc(ruta(V.poster)) + '" data-cap="' + esc(V.texto || t.tema) + '"><img src="' + esc(ruta(V.poster)) + '" alt="' + esc(V.texto || t.tema) + '" loading="lazy"></button></figure>' : "";
+      }
+      const k = Number(m.split(" ")[1]) - 1, f = lista[k];
+      if (!f) return "";
+      usadas[k] = true;
+      return '<figure class="tall-fig' + (/vertical/.test(m) ? " vert" : "") + '"><button type="button" class="foto" data-full="' + esc(ruta(f)) + '" data-cap="' + esc(t.tema) + '"><img src="' + esc(ruta(f)) + '" alt="' + esc(t.tema + ", foto " + (k + 1)) + '" loading="lazy"></button></figure>';
+    };
+    const partes = String(t.contenido || "").split(/\n?\[\[(foto \d+(?: vertical)?|presentacion|video)\]\]\n?/);
+    const texto = String(t.contenido || "").trim()
+      ? '<div class="cuerpo tall-cuerpo">' + (() => {
+          // Una foto va en una fila con el texto que la sigue (hasta el siguiente subtítulo), centrada a su lado
+          let html = "", lado = 0;
+          for (let i = 0; i < partes.length; i++) {
+            const x = partes[i];
+            if (i % 2 === 0) { if (x.trim()) html += fmt(x); continue; }
+            const fig = bloque(x);
+            if (x === "presentacion" || !fig) { html += fig; continue; }
+            const sig = (partes[i + 1] || "").replace(/^\s+/, ""), c0 = sig.slice(1).search(/\n## /), corte = c0 < 0 ? -1 : c0 + 1;
+            const junto = corte < 0 ? sig : sig.slice(0, corte), despues = corte < 0 ? "" : sig.slice(corte);
+            if (!junto.trim()) { html += fig; continue; }
+            html += '<div class="tall-fila' + (lado++ % 2 ? " izq" : "") + '"><div class="tall-fila-txt">' + fmt(junto) + "</div>" + fig + "</div>";
+            partes[i + 1] = despues;
+          }
+          return html;
+        })() + "</div>"
+      : vacioPag("Todavía no he escrito sobre este taller.");
+    const resto = lista.filter((_, k) => !usadas[k]);
+    const fotos = resto.length ? '<h2 class="tall-h2">Fotos</h2>' + galeria(resto, 0, t.tema) : "";
+    const prev = TALLERES[n - 2], next = TALLERES[n];
+    const pn = '<nav class="pn" aria-label="Otros talleres">' +
+      (prev ? '<a href="#/taller/' + (n - 1) + '"><small><span class="pn-fl" aria-hidden="true">←</span> Anterior</small><b>' + esc(prev.tema) + "</b></a>" : "<span></span>") +
+      (next ? '<a class="sig" href="#/taller/' + (n + 1) + '"><small>Siguiente <span class="pn-fl" aria-hidden="true">→</span></small><b>' + esc(next.tema) + "</b></a>" : "<span></span>") + "</nav>";
+    return cab(esc(t.tema), esc(t.profe), pills, '<p class="volver"><a href="#/talleres">← Talleres</a></p>') +
+      '<div class="wrap pagina tall-pag">' + portada + texto + (presUsada ? "" : pres) + fotos + pn + "</div>";
   }
 
   /* ---------- ROTACIONES ---------- */
@@ -2284,6 +2497,7 @@ const EXTRAS = [
   function marcarNav() {
     let key = parseRoute().parts[0] || "";
     if (key === "clase") key = "clases";
+    if (key === "taller") key = "talleres";
     if (key === "rotacion") key = "rotaciones";
     $$("a", nav).forEach((a) => {
       if (a.getAttribute("data-r") === key) a.setAttribute("aria-current", "page");
@@ -2305,6 +2519,7 @@ const EXTRAS = [
       if (c) titulo = t(c.tema);
     }
     else if (ruta0 === "talleres") { html = viewTalleres(); titulo = t("Talleres"); }
+    else if (ruta0 === "taller") { const n = Number(r.parts[1]); html = viewTaller(n); despues = () => bindTaller(n); const tt = TALLERES[n - 1]; titulo = t(tt ? tt.tema : "Talleres"); }
     else if (ruta0 === "rotaciones" || ruta0 === "rotacion") { html = viewRotaciones(); despues = bindRotaciones; titulo = t("Rotaciones"); }
     else if (ruta0 === "multimedia") { html = viewMultimedia(); despues = bindMultimedia; titulo = t("Multimedia"); }
     else if (ruta0 === "trabajos") { html = viewTrabajos(); titulo = t("Trabajos"); }
