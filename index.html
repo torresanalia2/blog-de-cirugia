@@ -1125,6 +1125,7 @@ body.en-inicio.desplazado .top { background: rgba(10, 10, 10, .94); border-botto
 .tall-fila { display: flex; flex-direction: column-reverse; gap: 1rem; margin: .4rem 0 1.6rem; }
 .tall-fila .tall-fig { margin: 0; }
 .tall-fig.vert img { aspect-ratio: 3 / 4; object-position: 50% 30%; }
+.tall-cuerpo > .tall-fig:not(.vert) img { aspect-ratio: auto; height: auto; }
 @media (min-width: 700px) { .tall-fila:has(.vert) { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); } }
 .tall-fila-txt > :last-child { margin-bottom: 0; }
 .tall-fila-txt > h3:first-child { margin-top: 0; }
@@ -1140,7 +1141,12 @@ body.en-inicio.desplazado .top { background: rgba(10, 10, 10, .94); border-botto
 .tall-cuerpo .tall-pdf { margin: 1.25rem 0 2rem; }
 
 .tall-video.vertical video { aspect-ratio: 9 / 16; width: auto; height: min(560px, 75vh); max-width: 100%; margin: 0 auto; object-fit: cover; }
-@media (min-width: 700px) { .tall-fila:has(.tall-video.vertical) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); } }
+@media (min-width: 700px) { .tall-fila:has(.tall-video.vertical) { grid-template-columns: minmax(0, 1fr) auto; } .tall-fila.izq:has(.tall-video.vertical) { grid-template-columns: auto minmax(0, 1fr); } }
+.tall-yt iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 18px; background: #000; box-shadow: 0 10px 24px rgba(20,25,15,.14); }
+.tall-pdf-pie { display: flex; align-items: center; justify-content: space-between; gap: .8rem 1rem; flex-wrap: wrap; margin-top: .9rem; font-family: var(--f-ui); color: var(--muted); }
+.tall-pdf-pie .hp-cont { color: var(--pizarra); }
+.tall-grande { display: inline-flex; align-items: center; gap: .45rem; padding: .5rem 1.05rem; border: 1.5px solid var(--pizarra); border-radius: 999px; background: transparent; color: var(--pizarra); font: 600 .92rem var(--f-ui); cursor: pointer; transition: background .15s, color .15s; }
+.tall-grande:hover, .tall-grande:focus-visible { background: var(--pizarra); color: #fff; }
 </style>
 </head>
 <body>
@@ -1552,9 +1558,125 @@ El caso se dividía en roles:
 
 ## El diagnóstico
 **Pancreatitis aguda biliar (litiásica), leve a moderada**, sin necrosis ni falla orgánica. El manejo definitivo es la colecistectomía laparoscópica en el mismo ingreso, cuando baja la inflamación.`,
-    presentacion: { sinTitulo: true, titulo: "Caso clínico: pancreatitis aguda", pdf: "taller-abdomen-caso.pdf", nota: "Nuestro caso clínico completo (19 páginas)" },
+    presentacion: { encabezado: "Nuestro caso clínico", sub: "El caso de pancreatitis aguda que preparó nuestro grupo.", titulo: "Caso clínico: pancreatitis aguda", pdf: "taller-abdomen-caso.pdf", nota: "Nuestro caso clínico completo (19 páginas)" },
     video: { src: "taller-abdomen-michael.mp4", poster: "taller-abdomen-michael.jpg", vertical: true, texto: "Michael simulando a un paciente con pancreatitis aguda." },
     fotos: ["taller-abdomen-1.jpg"],
+  },
+  {
+    tema: "Soporte vital básico (BLS)", profe: "Dr. Alberto Perdomo", fecha: "",
+    portada: "taller-bls-portada.jpg",
+    resumen: "Reconocimiento del paro cardíaco, RCP de alta calidad y uso del DEA.",
+    contenido: `## Qué fue el taller
+El taller de soporte vital básico (BLS) lo dio el **Dr. Alberto Perdomo**. Nos explicó que lo que vimos es aproximadamente el **10 % de un curso formal certificado**, y que la referencia mundial en reanimación son las guías de la **Asociación Americana del Corazón (AHA)**, que se actualizan cada 5 años; las vigentes son las de 2025.
+
+## La cadena de supervivencia
+La reanimación se ve como una cadena de eslabones: **reconocimiento, RCP de alta calidad, desfibrilación temprana, reanimación avanzada, cuidados post-paro cardíaco y recuperación**. El objetivo final es la recuperación total del paciente, para que vuelva a su vida diaria.
+
+## Reconocer un paro cardíaco
+- Al inicio del colapso puede haber movimientos mioclónicos que se confunden con una convulsión. La diferencia está en el pulso y la respiración: el paciente que convulsiona tiene pulso; el que está en paro no responde, no respira o respira de forma anómala, y no tiene pulso carotídeo.
+- Todo deportista que colapsa sin haber recibido un golpe está en paro cardíaco hasta que se demuestre lo contrario.
+- Las respiraciones agónicas (*gasping*) y los movimientos de los primeros 60 segundos no son respiración normal y no deben retrasar la RCP.
+- Vimos los casos de **Christian Eriksen** (Eurocopa) y **Damar Hamlin** (NFL).
+
+[[video]]
+## RCP de alta calidad
+- El reanimador se coloca perpendicular al tórax, con las manos entrelazadas en el tercio inferior del esternón.
+- Profundidad de **5 cm** (sin pasar de 6 cm) y frecuencia de **100 a 120 compresiones por minuto**.
+- Hay que dejar que el tórax se reexpanda por completo en cada compresión.
+- Se cambia de reanimador cada **2 minutos**.
+- **Adultos:** 30:2, con uno o dos reanimadores. **Niños y lactantes:** 30:2 con un reanimador y 15:2 con dos.
+- **Con vía aérea avanzada:** compresiones continuas, sin pausas, y una ventilación cada 6 segundos en adultos y cada 3 segundos en pediatría.
+- Si no se tiene equipo de barrera, se puede hacer RCP solo con las manos.
+
+En el video, la práctica de compresiones en el maniquí.
+
+## Desfibrilación temprana
+- Desfibrilar en los primeros 4 a 5 minutos del colapso eleva la supervivencia por encima del **50 %**.
+- El DEA analiza el ritmo, detecta los ritmos desfibrilables (fibrilación ventricular y taquicardia ventricular sin pulso) y guía con instrucciones de voz.
+- **Parches:** en adultos, bajo la clavícula derecha y en el ápex; en niños, parches pediátricos o posición anteroposterior si el tórax es pequeño.
+- En Panamá, la ley de acceso público al DEA (modificada en 2023 y reglamentada en 2024) obliga a tener DEA en lugares de concurrencia masiva, como centros comerciales, gimnasios, iglesias, casinos y centros deportivos.
+
+## La secuencia de actuación
+- **1.** Confirmar que la escena es segura.
+- **2.** Ver si la víctima responde, tocándole los hombros.
+- **3.** Pedir ayuda en voz alta y pedir un DEA.
+- **4.** Revisar a la vez el pulso carotídeo y la respiración, en 5 a 10 segundos como máximo.
+- **5.** Si no responde, no respira y no tiene pulso, empezar las compresiones de inmediato y usar el DEA en cuanto llegue.
+
+## Caso de futbolista panameño
+El doctor terminó con el caso de **Luis "Matador" Tejada** (Panamá, 2024): colapsó en una cancha informal y, sin reconocimiento oportuno, sin RCP inmediata y sin un DEA, no se le pudo reanimar.`,
+    video: { src: "taller-bls.mp4", poster: "taller-bls-video.jpg", vertical: true, texto: "Práctica de compresiones en el maniquí." },
+    fotos: [],
+  },
+  {
+    tema: "Nudos y suturas", profe: "Dra. Debbie Wong", fecha: "26 de agosto de 2026",
+    portada: "taller-suturas-portada.jpg",
+    resumen: "Generalidades de las suturas, uso de los instrumentos y práctica de puntos.",
+    contenido: `## Qué fue el taller
+El taller de nudos y suturas lo dio la **Dra. Debbie Wong**. Los objetivos eran conocer las generalidades de las suturas, aprender a usar correctamente los instrumentos y practicar la sutura con instrumentos.
+
+[[foto 2 ancha]]
+
+## Qué es una sutura
+Es una hebra de material que se usa para afrontar los tejidos de una herida o para ligar vasos. Una **hebra sin aguja es una ligadura**, y una **hebra con aguja es una sutura**.
+
+Sirven para aproximar los tejidos y facilitar la cicatrización, disminuir la pérdida de sangre, reducir la posibilidad de infección, mejorar la estética y restaurar la función.
+
+## Características de las suturas
+- **Calibre:** es el diámetro de la sutura, y se distingue por el número de ceros: a más ceros, más fino el calibre.
+- **Fuerza tensil:** la fuerza que el hilo puede soportar.
+- **Capilaridad:** el paso de líquidos a lo largo de la sutura; es proporcional a la retención de bacterias, y es mayor en las multifilamento.
+- **Memoria:** la tendencia de la sutura a volver a su forma original. Las monofilamento necesitan más nudos.
+- **Coeficiente de fricción:** a mayor fricción, mayor seguridad del nudo.
+- **Extensibilidad:** la sutura se estira un poco y recupera su forma después del nudo.
+
+## Clasificación
+- **Por su origen:** naturales o sintéticas.
+- **Por el número de hebras:** monofilamento (una sola hebra, pasa con menos resistencia por el tejido) o multifilamento (varias hebras trenzadas, con más fuerza tensil y flexibilidad).
+- **Por su absorción:** absorbibles (las naturales se absorben por enzimas o fagocitosis, y las sintéticas por hidrólisis) o no absorbibles (como la seda, el acero, el nylon, el polipropileno y el poliéster).
+
+## Los instrumentos
+Conocimos el **portaagujas**, las **pinzas Adson**, la **tijera** y la **pinza hemostática**. La aguja se sujeta con el portaagujas entre un tercio y la mitad de la distancia entre el extremo que lleva la sutura y la punta, y al pasarla por el tejido la presión sigue la curva de la aguja.
+
+[[foto 1 vertical]]
+## La práctica
+Practicamos la sutura con instrumentos:
+
+- Puntos simples.
+- Colchonero vertical u horizontal.
+- Sutura continua simple.
+
+En la foto estamos mi compañero y yo en la estación de nudos quirúrgicos.
+
+[[youtube]]
+
+[[presentacion]]
+
+[[foto 3 ancha]]`,
+    presentacion: { encabezado: "La presentación", sub: "Presentación de la Dra. Debbie Wong.", titulo: "Taller de nudos y suturas", pdf: "taller-suturas.pdf", nota: "La presentación completa (39 diapositivas)" },
+    youtube: { id: "TFwFMav_cpE", url: "https://youtu.be/TFwFMav_cpE", titulo: "Video de suturas básicas para cirugía" },
+    fotos: ["taller-suturas-1.jpg", "taller-suturas-2.jpg", "taller-suturas-3.jpg"],
+  },
+  {
+    tema: "Eco-Doppler", profe: "Clínica Vascular de Panamá", fecha: "5 de septiembre de 2026",
+    portada: "taller-eco-portada.jpg",
+    resumen: "Examen y ultrasonido vascular y ultrasonido FAST, en cuatro estaciones.",
+    contenido: `[[foto 1 vertical]]
+## Qué fue el taller
+El taller de examen y ultrasonido vascular y ultrasonido FAST fue el sábado 5 de septiembre de 2026, en el 3.er piso de Hospiten Paitilla. Lo organizó la Clínica Vascular de Panamá, con el aval de la Fundación Vascular de Panamá.
+
+Los grupos 1 a 4 fueron de 8 a 10 de la mañana, y los grupos 5 a 8, de 10 a 12. En cada estación nos enseñaban la posición correcta para el estudio, el equipo de ultrasonido y el transductor adecuado, nos hacían una demostración del estudio completo y luego practicábamos nosotros.
+
+[[video]]
+## Las estaciones
+- **Estación 1, examen vascular e índice tobillo-brazo** (Dr. Gerardo Victoria y Dra. María Fernández): los pulsos carotídeo, axilar, braquial, radial, cubital, femoral, poplíteo, tibial anterior o pedio, tibial posterior y de la aorta abdominal; el uso del Doppler pulsado, la medición de las presiones en ambos brazos y ambos tobillos y el cálculo del índice.
+- **Estación 2, Doppler arterial y venoso para enfermedad crónica** (Dra. Theris Yancic y Dr. Giacomo Zilipo): reconocer la imagen de "Mickey Mouse", el Doppler arterial de la femoral común, la femoral y la femoral profunda, y el Doppler venoso de la vena femoral común y las uniones safeno-femoral y safeno-poplítea.
+- **Estación 3, Doppler venoso para TVP** (Dr. Enrique Victoria y Dr. Eric Cedeño): la vena femoral común, la unión safeno-femoral, la vena poplítea y la unión safeno-poplítea.
+- **Estación 4, ultrasonido FAST y accesos vasculares** (Dr. Adrián Rujano): ultrasonido FAST, eFAST, accesos vasculares y POCUS.
+
+[[foto 2]]`,
+    video: { src: "taller-eco.mp4", poster: "taller-eco-video.jpg", vertical: true, texto: "Video del taller de eco-Doppler." },
+    fotos: ["taller-eco-1.jpg", "taller-eco-2.jpg"],
   },
 ];
 
@@ -2324,7 +2446,7 @@ const EXTRAS = [
     let N = 1, k = 0;
     const pintar = (d) => {
       moverPagina(cv, k, N, d);
-      fig.querySelector(".hp-cont").textContent = "Diapositiva " + (k + 1) + " de " + N + " ·";
+      fig.querySelector(".hp-cont").textContent = "Diapositiva " + (k + 1) + " de " + N;
       fig.querySelector(".hp-ant").disabled = k === 0;
       fig.querySelector(".hp-sig").disabled = k >= N - 1;
     };
@@ -2348,28 +2470,33 @@ const EXTRAS = [
     const P = t.presentacion;
     const pres = !P ? "" : (P.sinTitulo ? "" : '<h2 class="tall-h2">' + esc(P.encabezado || ("La clase: " + P.titulo)) + "</h2>" + '<p class="tall-pres-sub">' + esc(P.sub || ("Presentación de " + P.profe + ".")) + "</p>") +
       (typeof abrirPdf === "function"
-        ? '<figure class="res-hoja res-pdf tall-pdf"><div class="visor-bar solo-btn"><span class="visor-btns"><button type="button" class="btn peq" data-tgrande>Ver en grande</button></span></div>' +
+        ? '<figure class="res-hoja res-pdf tall-pdf">' +
           '<div class="hp"><button type="button" class="res-hoja-img hp-vista tall-pdf-vista" data-tgrande aria-label="Ver la presentación en grande"><canvas width="1280" height="960" role="img" aria-label="' + esc("Presentación: " + P.titulo) + '"></canvas><span class="hp-cargando">Cargando presentación…</span></button>' +
           '<button type="button" class="hp-flecha hp-ant" data-paso="-1" aria-label="Diapositiva anterior" disabled>‹</button><button type="button" class="hp-flecha hp-sig" data-paso="1" aria-label="Diapositiva siguiente" disabled>›</button></div>' +
-          '<figcaption><span class="hp-cont" aria-live="polite"></span> Toca la diapositiva para verla en grande.</figcaption></figure>'
+          '<figcaption class="tall-pdf-pie"><span class="hp-cont" aria-live="polite"></span><button type="button" class="tall-grande" data-tgrande><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Ver en grande</button></figcaption></figure>'
         : '<p class="vacio-simple">' + esc(P.nota || "La presentación completa") + ' se ve en la versión del blog publicada en GitHub.</p>');
     // En el texto, [[foto 1]], [[foto 2]]... y [[presentacion]] ponen la foto o la presentación en ese lugar
     const lista = (t.fotos || []).filter(Boolean), usadas = {};
     let presUsada = false;
     const bloque = (m) => {
       if (m === "presentacion") { presUsada = true; return pres; }
+      if (m === "youtube") {
+        const Y = t.youtube;
+        if (!Y) return "";
+        return '<h2 class="tall-h2">' + esc(Y.titulo || "Video") + '</h2><figure class="tall-fig tall-yt"><iframe src="https://www.youtube-nocookie.com/embed/' + esc(Y.id) + '" title="Video del taller" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></figure>';
+      }
       if (m === "video") {
         const V = t.video;
         if (!V) return "";
         if (V.src) return '<figure class="tall-fig tall-video' + (V.vertical ? " vertical" : "") + '"><video controls playsinline preload="none"' + (V.poster ? ' poster="' + esc(ruta(V.poster)) + '"' : "") + ' aria-label="' + esc(V.texto || "Video") + '"><source src="' + esc(ruta(V.src)) + '" type="video/mp4"></video></figure>';
-        return V.poster ? '<figure class="tall-fig"><button type="button" class="foto" data-full="' + esc(ruta(V.poster)) + '" data-cap="' + esc(V.texto || t.tema) + '"><img src="' + esc(ruta(V.poster)) + '" alt="' + esc(V.texto || t.tema) + '" loading="lazy"></button></figure>' : "";
+        return V.poster ? '<figure class="tall-fig' + (V.vertical ? " vert" : "") + '"><button type="button" class="foto" data-full="' + esc(ruta(V.poster)) + '" data-cap="' + esc(V.texto || t.tema) + '"><img src="' + esc(ruta(V.poster)) + '" alt="' + esc(V.texto || t.tema) + '" loading="lazy"></button></figure>' : "";
       }
       const k = Number(m.split(" ")[1]) - 1, f = lista[k];
       if (!f) return "";
       usadas[k] = true;
       return '<figure class="tall-fig' + (/vertical/.test(m) ? " vert" : "") + '"><button type="button" class="foto" data-full="' + esc(ruta(f)) + '" data-cap="' + esc(t.tema) + '"><img src="' + esc(ruta(f)) + '" alt="' + esc(t.tema + ", foto " + (k + 1)) + '" loading="lazy"></button></figure>';
     };
-    const partes = String(t.contenido || "").split(/\n?\[\[(foto \d+(?: vertical)?|presentacion|video)\]\]\n?/);
+    const partes = String(t.contenido || "").split(/\n?\[\[(foto \d+(?: vertical| ancha)?|presentacion|video|youtube)\]\]\n?/);
     const texto = String(t.contenido || "").trim()
       ? '<div class="cuerpo tall-cuerpo">' + (() => {
           // Una foto va en una fila con el texto que la sigue (hasta el siguiente subtítulo), centrada a su lado
@@ -2378,7 +2505,7 @@ const EXTRAS = [
             const x = partes[i];
             if (i % 2 === 0) { if (x.trim()) html += fmt(x); continue; }
             const fig = bloque(x);
-            if (x === "presentacion" || !fig) { html += fig; continue; }
+            if (x === "presentacion" || x === "youtube" || / ancha$/.test(x) || !fig) { html += fig; continue; }
             const sig = (partes[i + 1] || "").replace(/^\s+/, ""), c0 = sig.slice(1).search(/\n## /), corte = c0 < 0 ? -1 : c0 + 1;
             const junto = corte < 0 ? sig : sig.slice(0, corte), despues = corte < 0 ? "" : sig.slice(corte);
             if (!junto.trim()) { html += fig; continue; }
