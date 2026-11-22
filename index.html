@@ -1147,6 +1147,9 @@ body.en-inicio.desplazado .top { background: rgba(10, 10, 10, .94); border-botto
 .tall-pdf-pie .hp-cont { color: var(--pizarra); }
 .tall-grande { display: inline-flex; align-items: center; gap: .45rem; padding: .5rem 1.05rem; border: 1.5px solid var(--pizarra); border-radius: 999px; background: transparent; color: var(--pizarra); font: 600 .92rem var(--f-ui); cursor: pointer; transition: background .15s, color .15s; }
 .tall-grande:hover, .tall-grande:focus-visible { background: var(--pizarra); color: #fff; }
+.tall-fig.chica { width: 100%; max-width: 290px; margin-inline: auto; }
+.tall-fila .tall-fig.chica { justify-self: center; }
+.tall-pie { margin-top: .65rem; text-align: center; font-size: .92rem; line-height: 1.45; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -1525,45 +1528,55 @@ Todo fue en simulación, así que había que ponerse de acuerdo y trabajar en eq
     fotos: ["taller-reto-1.jpg", "taller-reto-2.jpg"],
   },
   {
-    tema: "Abdomen agudo", profe: "Dr. Gerardo Victoria", fecha: "1 de septiembre de 2026",
-    portada: "taller-abdomen-portada.jpg",
-    resumen: "Nuestro grupo recreó un caso simulado de pancreatitis aguda biliar.",
-    contenido: `[[foto 1]]
-## Qué fue el taller
-En el taller, **cada grupo tuvo que simular una patología de abdomen agudo y, a la vez, adivinar la patología que simulaba otro grupo**.
+    tema: "Nudos y suturas", profe: "Dra. Debbie Wong", fecha: "26 de agosto de 2026",
+    portada: "taller-suturas-portada.jpg",
+    resumen: "Generalidades de las suturas, uso de los instrumentos y práctica de puntos.",
+    contenido: `## Qué fue el taller
+El taller de nudos y suturas lo dio la **Dra. Debbie Wong**. Los objetivos eran conocer las generalidades de las suturas, aprender a usar correctamente los instrumentos y practicar la sutura con instrumentos.
 
-Así vimos las patologías más frecuentes del abdomen agudo, como la apendicitis, la colecistitis, la pancreatitis, la obstrucción intestinal y la perforación de víscera hueca.
+[[foto 2 ancha]]
 
-En la foto, nuestro grupo examinando al paciente del caso que nos tocó adivinar.
+## Qué es una sutura
+Es una hebra de material que se usa para afrontar los tejidos de una herida o para ligar vasos. Una **hebra sin aguja es una ligadura**, y una **hebra con aguja es una sutura**.
 
-[[video]]
-## Nuestro caso: pancreatitis aguda
-A mi grupo, el **grupo 8, el grupo Panamá**, le tocó recrear un caso de **pancreatitis aguda**, y para eso preparamos el caso clínico completo.
+Sirven para aproximar los tejidos y facilitar la cicatrización, disminuir la pérdida de sangre, reducir la posibilidad de infección, mejorar la estética y restaurar la función.
 
-Nuestro compañero **Michael** fue el paciente simulado: lo representó desde la anamnesis hasta el examen físico. Mientras tanto, nosotros le dábamos al grupo que tenía que adivinar el caso las imágenes y los laboratorios correspondientes.
+## Características de las suturas
+- **Calibre:** es el diámetro de la sutura, y se distingue por el número de ceros: a más ceros, más fino el calibre.
+- **Fuerza tensil:** la fuerza que el hilo puede soportar.
+- **Capilaridad:** el paso de líquidos a lo largo de la sutura; es proporcional a la retención de bacterias, y es mayor en las multifilamento.
+- **Memoria:** la tendencia de la sutura a volver a su forma original. Las monofilamento necesitan más nudos.
+- **Coeficiente de fricción:** a mayor fricción, mayor seguridad del nudo.
+- **Extensibilidad:** la sutura se estira un poco y recupera su forma después del nudo.
 
-En el video, Michael simulando a un paciente con pancreatitis aguda.
+## Clasificación
+- **Por su origen:** naturales o sintéticas.
+- **Por el número de hebras:** monofilamento (una sola hebra, pasa con menos resistencia por el tejido) o multifilamento (varias hebras trenzadas, con más fuerza tensil y flexibilidad).
+- **Por su absorción:** absorbibles (las naturales se absorben por enzimas o fagocitosis, y las sintéticas por hidrólisis) o no absorbibles (como la seda, el acero, el nylon, el polipropileno y el poliéster).
 
-## Cómo estaba armado el caso
-El caso se dividía en roles:
+## Los instrumentos
+Conocimos el **portaagujas**, las **pinzas Adson**, la **tijera** y la **pinza hemostática**. La aguja se sujeta con el portaagujas entre un tercio y la mitad de la distancia entre el extremo que lleva la sutura y la punta, y al pasarla por el tejido la presión sigue la curva de la aguja.
 
-- **Simulador:** el paciente, un hombre de 23 años, comerciante, con taquicardia (108 lpm), presión de 100/65 mmHg, taquipnea y febrícula (37.8 °C).
-- **Clínico:** el examen físico: paciente en posición antálgica, encorvado hacia adelante, con leve tinte ictérico, dolor intenso en epigastrio e hipocondrio derecho, defensa muscular voluntaria y ruidos hidroaéreos disminuidos. Los signos de Grey Turner y Cullen eran negativos.
-- **Radiólogo:** radiografía de abdomen de pie (sin neumoperitoneo, con signo del colon cortado), ultrasonido (colelitiasis y páncreas aumentado de tamaño, con edema) y tomografía contrastada (Balthazar C, sin necrosis).
-- **Laboratorista:** leucocitosis con neutrofilia, hemoconcentración, amilasa y lipasa más de 3 veces por encima de lo normal, hiperglucemia y colestasis.
-- **Órdenes médicas:** NPO, vía periférica, hidratación con solución salina y laboratorios preoperatorios.
-- **Explicación al paciente y patólogo:** cómo explicarle el diagnóstico al paciente, y el hallazgo anatomopatológico esperado de la vesícula.
+[[foto 1 vertical chica]]
+## La práctica
+Practicamos la sutura con instrumentos:
+
+- Puntos simples.
+- Colchonero vertical u horizontal.
+- Sutura continua simple.
+
+[[youtube]]
 
 [[presentacion]]
 
-## El diagnóstico
-**Pancreatitis aguda biliar (litiásica), leve a moderada**, sin necrosis ni falla orgánica. El manejo definitivo es la colecistectomía laparoscópica en el mismo ingreso, cuando baja la inflamación.`,
-    presentacion: { encabezado: "Nuestro caso clínico", sub: "El caso de pancreatitis aguda que preparó nuestro grupo.", titulo: "Caso clínico: pancreatitis aguda", pdf: "taller-abdomen-caso.pdf", nota: "Nuestro caso clínico completo (19 páginas)" },
-    video: { src: "taller-abdomen-michael.mp4", poster: "taller-abdomen-michael.jpg", vertical: true, texto: "Michael simulando a un paciente con pancreatitis aguda." },
-    fotos: ["taller-abdomen-1.jpg"],
+[[foto 3 ancha]]`,
+    presentacion: { encabezado: "Presentación de la Dra. Debbie Wong", sub: "", titulo: "Taller de nudos y suturas", pdf: "taller-suturas.pdf", nota: "La presentación completa (39 diapositivas)" },
+    youtube: { id: "TFwFMav_cpE", url: "https://youtu.be/TFwFMav_cpE", titulo: "Video de suturas básicas para cirugía" },
+    pies: { 1: "Mi compañero y yo en la estación de nudos quirúrgicos." },
+    fotos: ["taller-suturas-1.jpg", "taller-suturas-2.jpg", "taller-suturas-3.jpg"],
   },
   {
-    tema: "Soporte vital básico (BLS)", profe: "Dr. Alberto Perdomo", fecha: "",
+    tema: "Soporte vital básico (BLS)", profe: "Dr. Alberto Perdomo", fecha: "31 de agosto de 2026",
     portada: "taller-bls-portada.jpg",
     resumen: "Reconocimiento del paro cardíaco, RCP de alta calidad y uso del DEA.",
     contenido: `## Qué fue el taller
@@ -1609,73 +1622,83 @@ El doctor terminó con el caso de **Luis "Matador" Tejada** (Panamá, 2024): col
     fotos: [],
   },
   {
-    tema: "Nudos y suturas", profe: "Dra. Debbie Wong", fecha: "26 de agosto de 2026",
-    portada: "taller-suturas-portada.jpg",
-    resumen: "Generalidades de las suturas, uso de los instrumentos y práctica de puntos.",
-    contenido: `## Qué fue el taller
-El taller de nudos y suturas lo dio la **Dra. Debbie Wong**. Los objetivos eran conocer las generalidades de las suturas, aprender a usar correctamente los instrumentos y practicar la sutura con instrumentos.
+    tema: "Abdomen agudo", profe: "Dr. Gerardo Victoria", fecha: "1 de septiembre de 2026",
+    portada: "taller-abdomen-portada.jpg",
+    resumen: "Nuestro grupo recreó un caso simulado de pancreatitis aguda biliar.",
+    contenido: `[[foto 1]]
+## Qué fue el taller
+En el taller, **cada grupo tuvo que simular una patología de abdomen agudo y, a la vez, adivinar la patología que simulaba otro grupo**.
 
-[[foto 2 ancha]]
+Así vimos las patologías más frecuentes del abdomen agudo, como la apendicitis, la colecistitis, la pancreatitis, la obstrucción intestinal y la perforación de víscera hueca.
 
-## Qué es una sutura
-Es una hebra de material que se usa para afrontar los tejidos de una herida o para ligar vasos. Una **hebra sin aguja es una ligadura**, y una **hebra con aguja es una sutura**.
+En la foto, nuestro grupo examinando al paciente del caso que nos tocó adivinar.
 
-Sirven para aproximar los tejidos y facilitar la cicatrización, disminuir la pérdida de sangre, reducir la posibilidad de infección, mejorar la estética y restaurar la función.
+[[video]]
+## Nuestro caso: pancreatitis aguda
+A mi grupo, el **grupo 8, el grupo Panamá**, le tocó recrear un caso de **pancreatitis aguda**, y para eso preparamos el caso clínico completo.
 
-## Características de las suturas
-- **Calibre:** es el diámetro de la sutura, y se distingue por el número de ceros: a más ceros, más fino el calibre.
-- **Fuerza tensil:** la fuerza que el hilo puede soportar.
-- **Capilaridad:** el paso de líquidos a lo largo de la sutura; es proporcional a la retención de bacterias, y es mayor en las multifilamento.
-- **Memoria:** la tendencia de la sutura a volver a su forma original. Las monofilamento necesitan más nudos.
-- **Coeficiente de fricción:** a mayor fricción, mayor seguridad del nudo.
-- **Extensibilidad:** la sutura se estira un poco y recupera su forma después del nudo.
+Nuestro compañero **Michael** fue el paciente simulado: lo representó desde la anamnesis hasta el examen físico. Mientras tanto, nosotros le dábamos al grupo que tenía que adivinar el caso las imágenes y los laboratorios correspondientes.
 
-## Clasificación
-- **Por su origen:** naturales o sintéticas.
-- **Por el número de hebras:** monofilamento (una sola hebra, pasa con menos resistencia por el tejido) o multifilamento (varias hebras trenzadas, con más fuerza tensil y flexibilidad).
-- **Por su absorción:** absorbibles (las naturales se absorben por enzimas o fagocitosis, y las sintéticas por hidrólisis) o no absorbibles (como la seda, el acero, el nylon, el polipropileno y el poliéster).
+En el video, Michael simulando a un paciente con pancreatitis aguda.
 
-## Los instrumentos
-Conocimos el **portaagujas**, las **pinzas Adson**, la **tijera** y la **pinza hemostática**. La aguja se sujeta con el portaagujas entre un tercio y la mitad de la distancia entre el extremo que lleva la sutura y la punta, y al pasarla por el tejido la presión sigue la curva de la aguja.
+## Cómo estaba armado el caso
+El caso se dividía en roles:
 
-[[foto 1 vertical]]
-## La práctica
-Practicamos la sutura con instrumentos:
-
-- Puntos simples.
-- Colchonero vertical u horizontal.
-- Sutura continua simple.
-
-En la foto estamos mi compañero y yo en la estación de nudos quirúrgicos.
-
-[[youtube]]
+- **Simulador:** el paciente, un hombre de 23 años, comerciante, con taquicardia (108 lpm), presión de 100/65 mmHg, taquipnea y febrícula (37.8 °C).
+- **Clínico:** el examen físico: paciente en posición antálgica, encorvado hacia adelante, con leve tinte ictérico, dolor intenso en epigastrio e hipocondrio derecho, defensa muscular voluntaria y ruidos hidroaéreos disminuidos. Los signos de Grey Turner y Cullen eran negativos.
+- **Radiólogo:** radiografía de abdomen de pie (sin neumoperitoneo, con signo del colon cortado), ultrasonido (colelitiasis y páncreas aumentado de tamaño, con edema) y tomografía contrastada (Balthazar C, sin necrosis).
+- **Laboratorista:** leucocitosis con neutrofilia, hemoconcentración, amilasa y lipasa más de 3 veces por encima de lo normal, hiperglucemia y colestasis.
+- **Órdenes médicas:** NPO, vía periférica, hidratación con solución salina y laboratorios preoperatorios.
+- **Explicación al paciente y patólogo:** cómo explicarle el diagnóstico al paciente, y el hallazgo anatomopatológico esperado de la vesícula.
 
 [[presentacion]]
 
-[[foto 3 ancha]]`,
-    presentacion: { encabezado: "La presentación", sub: "Presentación de la Dra. Debbie Wong.", titulo: "Taller de nudos y suturas", pdf: "taller-suturas.pdf", nota: "La presentación completa (39 diapositivas)" },
-    youtube: { id: "TFwFMav_cpE", url: "https://youtu.be/TFwFMav_cpE", titulo: "Video de suturas básicas para cirugía" },
-    fotos: ["taller-suturas-1.jpg", "taller-suturas-2.jpg", "taller-suturas-3.jpg"],
+## El diagnóstico
+**Pancreatitis aguda biliar (litiásica), leve a moderada**, sin necrosis ni falla orgánica. El manejo definitivo es la colecistectomía laparoscópica en el mismo ingreso, cuando baja la inflamación.`,
+    presentacion: { encabezado: "Nuestro caso clínico", sub: "El caso de pancreatitis aguda que preparó nuestro grupo.", titulo: "Caso clínico: pancreatitis aguda", pdf: "taller-abdomen-caso.pdf", nota: "Nuestro caso clínico completo (19 páginas)" },
+    video: { src: "taller-abdomen-michael.mp4", poster: "taller-abdomen-michael.jpg", vertical: true, texto: "Michael simulando a un paciente con pancreatitis aguda." },
+    fotos: ["taller-abdomen-1.jpg"],
   },
   {
     tema: "Eco-Doppler", profe: "Clínica Vascular de Panamá", fecha: "5 de septiembre de 2026",
     portada: "taller-eco-portada.jpg",
     resumen: "Examen y ultrasonido vascular y ultrasonido FAST, en cuatro estaciones.",
-    contenido: `[[foto 1 vertical]]
-## Qué fue el taller
+    contenido: `## Qué fue el taller
 El taller de examen y ultrasonido vascular y ultrasonido FAST fue el sábado 5 de septiembre de 2026, en el 3.er piso de Hospiten Paitilla. Lo organizó la Clínica Vascular de Panamá, con el aval de la Fundación Vascular de Panamá.
 
 Los grupos 1 a 4 fueron de 8 a 10 de la mañana, y los grupos 5 a 8, de 10 a 12. En cada estación nos enseñaban la posición correcta para el estudio, el equipo de ultrasonido y el transductor adecuado, nos hacían una demostración del estudio completo y luego practicábamos nosotros.
 
+[[foto 1 vertical]]
+## Estación 1: examen vascular e índice tobillo-brazo
+Con el **Dr. Gerardo Victoria** y la **Dra. María Fernández** empezamos por el examen vascular físico: se palpan en orden, y comparando ambos lados, los pulsos carotídeo, axilar, braquial, radial, cubital, femoral, poplíteo, pedio (tibial anterior) y tibial posterior, además de la aorta abdominal.
+
+Después vimos cómo sacar el **índice tobillo-brazo (ITB)** con el Doppler pulsado:
+- Se toma la presión sistólica de la arteria braquial en ambos brazos.
+- Se toma la presión sistólica en cada tobillo, en la tibial anterior y en la tibial posterior.
+- El ITB de cada pierna es la presión más alta de ese tobillo dividida entre la presión braquial más alta.
+- De **1,00 a 1,40** es normal, de 0,91 a 0,99 es limítrofe, **0,90 o menos** indica enfermedad arterial periférica, y más de 1,40 sugiere arterias rígidas que no se dejan comprimir, como en pacientes diabéticos o con enfermedad renal.
+
 [[video]]
-## Las estaciones
-- **Estación 1, examen vascular e índice tobillo-brazo** (Dr. Gerardo Victoria y Dra. María Fernández): los pulsos carotídeo, axilar, braquial, radial, cubital, femoral, poplíteo, tibial anterior o pedio, tibial posterior y de la aorta abdominal; el uso del Doppler pulsado, la medición de las presiones en ambos brazos y ambos tobillos y el cálculo del índice.
-- **Estación 2, Doppler arterial y venoso para enfermedad crónica** (Dra. Theris Yancic y Dr. Giacomo Zilipo): reconocer la imagen de "Mickey Mouse", el Doppler arterial de la femoral común, la femoral y la femoral profunda, y el Doppler venoso de la vena femoral común y las uniones safeno-femoral y safeno-poplítea.
-- **Estación 3, Doppler venoso para TVP** (Dr. Enrique Victoria y Dr. Eric Cedeño): la vena femoral común, la unión safeno-femoral, la vena poplítea y la unión safeno-poplítea.
-- **Estación 4, ultrasonido FAST y accesos vasculares** (Dr. Adrián Rujano): ultrasonido FAST, eFAST, accesos vasculares y POCUS.
+## Estación 2: Doppler arterial y venoso para enfermedad crónica
+Con la **Dra. Theris Yancic** y el **Dr. Giacomo Zilipo** usamos el ultrasonido con transductor lineal en la ingle. En un corte transversal aparece el signo de **"Mickey Mouse"**: la vena femoral común es la cara, y las orejas son la arteria femoral común y la unión con la vena safena mayor.
+
+- **Doppler arterial:** se sigue la arteria femoral común y su división en femoral superficial y femoral profunda. El flujo arterial normal de las piernas es trifásico; cuando hay obstrucción se vuelve bifásico o monofásico.
+- **Doppler venoso para enfermedad venosa crónica:** en la vena femoral común y en las uniones safeno-femoral y safeno-poplítea se busca **reflujo**, es decir, sangre que se devuelve al hacer una maniobra de Valsalva o al soltar una compresión de la pantorrilla. En las venas superficiales, un reflujo de más de medio segundo se considera patológico.
+
+## Estación 3: Doppler venoso para TVP
+Con el **Dr. Enrique Victoria** y el **Dr. Eric Cedeño** vimos cómo buscar una trombosis venosa profunda. La técnica principal es la **compresión**: en un corte transversal se presiona la vena con el transductor. Una vena sana colapsa por completo; si no colapsa, sugiere que hay un trombo adentro.
+
+Se recorren la vena femoral común, la unión safeno-femoral, la vena poplítea, detrás de la rodilla, y la unión safeno-poplítea. Con el Doppler, el flujo venoso normal es espontáneo, cambia con la respiración y aumenta cuando se comprime la pantorrilla.
+
+## Estación 4: ultrasonido FAST, eFAST y accesos vasculares
+Con el **Dr. Adrián Rujano** practicamos el ultrasonido del paciente con trauma y el ultrasonido a la cabecera del paciente (POCUS):
+
+- **FAST:** busca líquido libre, que en trauma suele ser sangre, en cuatro ventanas: hepatorrenal (espacio de Morrison), esplenorrenal, pélvica y subxifoidea, que permite ver el pericardio.
+- **eFAST:** agrega las ventanas del tórax para buscar neumotórax, cuando no se ve el deslizamiento de la pleura, y hemotórax.
+- **Accesos vasculares:** el ultrasonido sirve para guiar la canalización de una vena. La vena se comprime con facilidad, mientras que la arteria late y no colapsa.
 
 [[foto 2]]`,
-    video: { src: "taller-eco.mp4", poster: "taller-eco-video.jpg", vertical: true, texto: "Video del taller de eco-Doppler." },
+    video: { src: "taller-eco.mp4", poster: "taller-eco-video.jpg", vertical: true, texto: "Video del taller de eco-Doppler.", pie: "Aquí estoy evaluando la vena poplítea con ultrasonido para descartar una trombosis venosa profunda (TVP)." },
     fotos: ["taller-eco-1.jpg", "taller-eco-2.jpg"],
   },
 ];
@@ -2468,7 +2491,7 @@ const EXTRAS = [
       ? '<figure class="tall-portada"><button type="button" class="foto" data-full="' + esc(ruta(t.portada)) + '" data-cap="' + esc(t.tema) + '"><img src="' + esc(ruta(t.portada)) + '" alt="' + esc(t.tema) + '"></button></figure>'
       : "";
     const P = t.presentacion;
-    const pres = !P ? "" : (P.sinTitulo ? "" : '<h2 class="tall-h2">' + esc(P.encabezado || ("La clase: " + P.titulo)) + "</h2>" + '<p class="tall-pres-sub">' + esc(P.sub || ("Presentación de " + P.profe + ".")) + "</p>") +
+    const pres = !P ? "" : (P.sinTitulo ? "" : '<h2 class="tall-h2">' + esc(P.encabezado || ("La clase: " + P.titulo)) + "</h2>" + (P.sub === "" ? "" : '<p class="tall-pres-sub">' + esc(P.sub || ("Presentación de " + P.profe + ".")) + "</p>")) +
       (typeof abrirPdf === "function"
         ? '<figure class="res-hoja res-pdf tall-pdf">' +
           '<div class="hp"><button type="button" class="res-hoja-img hp-vista tall-pdf-vista" data-tgrande aria-label="Ver la presentación en grande"><canvas width="1280" height="960" role="img" aria-label="' + esc("Presentación: " + P.titulo) + '"></canvas><span class="hp-cargando">Cargando presentación…</span></button>' +
@@ -2488,15 +2511,15 @@ const EXTRAS = [
       if (m === "video") {
         const V = t.video;
         if (!V) return "";
-        if (V.src) return '<figure class="tall-fig tall-video' + (V.vertical ? " vertical" : "") + '"><video controls playsinline preload="none"' + (V.poster ? ' poster="' + esc(ruta(V.poster)) + '"' : "") + ' aria-label="' + esc(V.texto || "Video") + '"><source src="' + esc(ruta(V.src)) + '" type="video/mp4"></video></figure>';
-        return V.poster ? '<figure class="tall-fig' + (V.vertical ? " vert" : "") + '"><button type="button" class="foto" data-full="' + esc(ruta(V.poster)) + '" data-cap="' + esc(V.texto || t.tema) + '"><img src="' + esc(ruta(V.poster)) + '" alt="' + esc(V.texto || t.tema) + '" loading="lazy"></button></figure>' : "";
+        if (V.src) return '<figure class="tall-fig tall-video' + (V.vertical ? " vertical" : "") + '"><video controls playsinline preload="none"' + (V.poster ? ' poster="' + esc(ruta(V.poster)) + '"' : "") + ' aria-label="' + esc(V.texto || "Video") + '"><source src="' + esc(ruta(V.src)) + '" type="video/mp4"></video>' + (V.pie ? '<figcaption class="tall-pie">' + esc(V.pie) + '</figcaption>' : "") + '</figure>';
+        return V.poster ? '<figure class="tall-fig' + (V.vertical ? " vert" : "") + '"><button type="button" class="foto" data-full="' + esc(ruta(V.poster)) + '" data-cap="' + esc(V.texto || t.tema) + '"><img src="' + esc(ruta(V.poster)) + '" alt="' + esc(V.texto || t.tema) + '" loading="lazy"></button>' + (V.pie ? '<figcaption class="tall-pie">' + esc(V.pie) + '</figcaption>' : "") + '</figure>' : "";
       }
       const k = Number(m.split(" ")[1]) - 1, f = lista[k];
       if (!f) return "";
       usadas[k] = true;
-      return '<figure class="tall-fig' + (/vertical/.test(m) ? " vert" : "") + '"><button type="button" class="foto" data-full="' + esc(ruta(f)) + '" data-cap="' + esc(t.tema) + '"><img src="' + esc(ruta(f)) + '" alt="' + esc(t.tema + ", foto " + (k + 1)) + '" loading="lazy"></button></figure>';
+      return '<figure class="tall-fig' + (/vertical/.test(m) ? " vert" : "") + (/ chica/.test(m) ? " chica" : "") + '"><button type="button" class="foto" data-full="' + esc(ruta(f)) + '" data-cap="' + esc(t.tema) + '"><img src="' + esc(ruta(f)) + '" alt="' + esc(t.tema + ", foto " + (k + 1)) + '" loading="lazy"></button>' + (t.pies && t.pies[k + 1] ? '<figcaption class="tall-pie">' + esc(t.pies[k + 1]) + '</figcaption>' : "") + '</figure>';
     };
-    const partes = String(t.contenido || "").split(/\n?\[\[(foto \d+(?: vertical| ancha)?|presentacion|video|youtube)\]\]\n?/);
+    const partes = String(t.contenido || "").split(/\n?\[\[(foto \d+(?: vertical| ancha| chica)*|presentacion|video|youtube)\]\]\n?/);
     const texto = String(t.contenido || "").trim()
       ? '<div class="cuerpo tall-cuerpo">' + (() => {
           // Una foto va en una fila con el texto que la sigue (hasta el siguiente subtítulo), centrada a su lado
@@ -2505,7 +2528,7 @@ const EXTRAS = [
             const x = partes[i];
             if (i % 2 === 0) { if (x.trim()) html += fmt(x); continue; }
             const fig = bloque(x);
-            if (x === "presentacion" || x === "youtube" || / ancha$/.test(x) || !fig) { html += fig; continue; }
+            if (x === "presentacion" || x === "youtube" || / ancha/.test(x) || !fig) { html += fig; continue; }
             const sig = (partes[i + 1] || "").replace(/^\s+/, ""), c0 = sig.slice(1).search(/\n## /), corte = c0 < 0 ? -1 : c0 + 1;
             const junto = corte < 0 ? sig : sig.slice(0, corte), despues = corte < 0 ? "" : sig.slice(corte);
             if (!junto.trim()) { html += fig; continue; }
