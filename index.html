@@ -1149,7 +1149,7 @@ body.en-inicio.desplazado .top { background: rgba(10, 10, 10, .94); border-botto
 .tall-grande:hover, .tall-grande:focus-visible { background: var(--pizarra); color: #fff; }
 .tall-fig.chica { width: 100%; max-width: 290px; margin-inline: auto; }
 .tall-fila .tall-fig.chica { justify-self: center; }
-.tall-pie { margin-top: .65rem; text-align: center; font-size: .92rem; line-height: 1.45; color: var(--muted); }
+.tall-pie { width: 0; min-width: 100%; margin-top: .65rem; text-align: center; font-size: .92rem; line-height: 1.45; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -1678,13 +1678,13 @@ Después vimos cómo sacar el **índice tobillo-brazo (ITB)** con el Doppler pul
 - El ITB de cada pierna es la presión más alta de ese tobillo dividida entre la presión braquial más alta.
 - De **1,00 a 1,40** es normal, de 0,91 a 0,99 es limítrofe, **0,90 o menos** indica enfermedad arterial periférica, y más de 1,40 sugiere arterias rígidas que no se dejan comprimir, como en pacientes diabéticos o con enfermedad renal.
 
-[[video]]
 ## Estación 2: Doppler arterial y venoso para enfermedad crónica
 Con la **Dra. Theris Yancic** y el **Dr. Giacomo Zilipo** usamos el ultrasonido con transductor lineal en la ingle. En un corte transversal aparece el signo de **"Mickey Mouse"**: la vena femoral común es la cara, y las orejas son la arteria femoral común y la unión con la vena safena mayor.
 
 - **Doppler arterial:** se sigue la arteria femoral común y su división en femoral superficial y femoral profunda. El flujo arterial normal de las piernas es trifásico; cuando hay obstrucción se vuelve bifásico o monofásico.
 - **Doppler venoso para enfermedad venosa crónica:** en la vena femoral común y en las uniones safeno-femoral y safeno-poplítea se busca **reflujo**, es decir, sangre que se devuelve al hacer una maniobra de Valsalva o al soltar una compresión de la pantorrilla. En las venas superficiales, un reflujo de más de medio segundo se considera patológico.
 
+[[video derecha]]
 ## Estación 3: Doppler venoso para TVP
 Con el **Dr. Enrique Victoria** y el **Dr. Eric Cedeño** vimos cómo buscar una trombosis venosa profunda. La técnica principal es la **compresión**: en un corte transversal se presiona la vena con el transductor. Una vena sana colapsa por completo; si no colapsa, sugiere que hay un trombo adentro.
 
@@ -2519,7 +2519,7 @@ const EXTRAS = [
       usadas[k] = true;
       return '<figure class="tall-fig' + (/vertical/.test(m) ? " vert" : "") + (/ chica/.test(m) ? " chica" : "") + '"><button type="button" class="foto" data-full="' + esc(ruta(f)) + '" data-cap="' + esc(t.tema) + '"><img src="' + esc(ruta(f)) + '" alt="' + esc(t.tema + ", foto " + (k + 1)) + '" loading="lazy"></button>' + (t.pies && t.pies[k + 1] ? '<figcaption class="tall-pie">' + esc(t.pies[k + 1]) + '</figcaption>' : "") + '</figure>';
     };
-    const partes = String(t.contenido || "").split(/\n?\[\[(foto \d+(?: vertical| ancha| chica)*|presentacion|video|youtube)\]\]\n?/);
+    const partes = String(t.contenido || "").split(/\n?\[\[(foto \d+(?: vertical| ancha| chica)*|presentacion|video(?: derecha| izquierda)?|youtube)\]\]\n?/);
     const texto = String(t.contenido || "").trim()
       ? '<div class="cuerpo tall-cuerpo">' + (() => {
           // Una foto va en una fila con el texto que la sigue (hasta el siguiente subtítulo), centrada a su lado
@@ -2527,12 +2527,13 @@ const EXTRAS = [
           for (let i = 0; i < partes.length; i++) {
             const x = partes[i];
             if (i % 2 === 0) { if (x.trim()) html += fmt(x); continue; }
-            const fig = bloque(x);
+            const lad = / derecha/.test(x) ? "d" : / izquierda/.test(x) ? "i" : "", fig = bloque(x.replace(/^video .*/, "video"));
             if (x === "presentacion" || x === "youtube" || / ancha/.test(x) || !fig) { html += fig; continue; }
             const sig = (partes[i + 1] || "").replace(/^\s+/, ""), c0 = sig.slice(1).search(/\n## /), corte = c0 < 0 ? -1 : c0 + 1;
             const junto = corte < 0 ? sig : sig.slice(0, corte), despues = corte < 0 ? "" : sig.slice(corte);
             if (!junto.trim()) { html += fig; continue; }
-            html += '<div class="tall-fila' + (lado++ % 2 ? " izq" : "") + '"><div class="tall-fila-txt">' + fmt(junto) + "</div>" + fig + "</div>";
+            const izq = lad ? lad === "i" : lado % 2 === 1; lado++;
+            html += '<div class="tall-fila' + (izq ? " izq" : "") + '"><div class="tall-fila-txt">' + fmt(junto) + "</div>" + fig + "</div>";
             partes[i + 1] = despues;
           }
           return html;
